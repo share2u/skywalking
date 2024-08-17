@@ -39,6 +39,7 @@ import org.skywalking.apm.agent.core.logging.api.ILog;
 import org.skywalking.apm.agent.core.logging.api.LogManager;
 
 /**
+ * 管理agent和servier的channel
  * @author wusheng
  */
 public class GRPCChannelManager implements BootService, Runnable {

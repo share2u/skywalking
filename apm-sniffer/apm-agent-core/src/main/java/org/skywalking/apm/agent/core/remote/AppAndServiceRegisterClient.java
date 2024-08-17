@@ -50,6 +50,7 @@ import org.skywalking.apm.network.proto.ServiceNameDiscoveryServiceGrpc;
 import static org.skywalking.apm.agent.core.remote.GRPCChannelStatus.CONNECTED;
 
 /**
+ * 把自己给注册进入skywalking
  * @author wusheng
  */
 public class AppAndServiceRegisterClient implements BootService, GRPCChannelListener, Runnable, TracingContextListener {

@@ -37,12 +37,16 @@ import static net.bytebuddy.matcher.ElementMatchers.not;
  * The <code>PluginFinder</code> represents a finder , which assist to find the one
  * from the given {@link AbstractClassEnhancePluginDefine} list.
  *
+ * 插件发现者
  * @author wusheng
  */
 public class PluginFinder {
     private final Map<String, LinkedList<AbstractClassEnhancePluginDefine>> nameMatchDefine = new HashMap<String, LinkedList<AbstractClassEnhancePluginDefine>>();
     private final List<AbstractClassEnhancePluginDefine> signatureMatchDefine = new LinkedList<AbstractClassEnhancePluginDefine>();
 
+    /**
+     * 遍历插件列表，根据不同的匹配策略分类存储插件定义
+     */
     public PluginFinder(List<AbstractClassEnhancePluginDefine> plugins) {
         for (AbstractClassEnhancePluginDefine plugin : plugins) {
             ClassMatch match = plugin.enhanceClass();
@@ -65,6 +69,12 @@ public class PluginFinder {
         }
     }
 
+    /**
+     * 根据类描述，查找匹配的插件定义
+     * @param typeDescription
+     * @param classLoader
+     * @return
+     */
     public List<AbstractClassEnhancePluginDefine> find(TypeDescription typeDescription,
         ClassLoader classLoader) {
         List<AbstractClassEnhancePluginDefine> matchedPlugins = new LinkedList<AbstractClassEnhancePluginDefine>();
@@ -83,6 +93,10 @@ public class PluginFinder {
         return matchedPlugins;
     }
 
+    /**
+     * 构建一个匹配器，用与后续字节码增强时确定哪些类需要增强
+     * @return
+     */
     public ElementMatcher<? super TypeDescription> buildMatch() {
         ElementMatcher.Junction judge = new AbstractJunction<NamedElement>() {
             @Override

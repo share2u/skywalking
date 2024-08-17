@@ -38,6 +38,7 @@ public enum ServiceManager {
     private Map<Class, BootService> bootedServices = new HashMap<Class, BootService>();
 
     public void boot() {
+        // 加载所有 BootService 实现类
         bootedServices = loadAllServices();
 
         beforeBoot();

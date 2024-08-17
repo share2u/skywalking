@@ -63,6 +63,7 @@ public class AgentClassLoader extends ClassLoader {
      * @throws AgentPackageNotFoundException
      */
     public static AgentClassLoader initDefaultLoader() throws AgentPackageNotFoundException {
+        // 初始化agent加载器，其父加载器为PluginBootstrap.class.getClassLoader()
         DEFAULT_LOADER = new AgentClassLoader(PluginBootstrap.class.getClassLoader());
         return getDefault();
     }

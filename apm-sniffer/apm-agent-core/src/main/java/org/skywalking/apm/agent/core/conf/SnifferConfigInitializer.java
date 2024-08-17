@@ -55,7 +55,7 @@ public class SnifferConfigInitializer {
      */
     public static void initialize() throws ConfigNotFoundException, AgentPackageNotFoundException {
         InputStream configFileStream;
-
+        // 从配置文件加载配置
         try {
             configFileStream = loadConfigFromAgentFolder();
             Properties properties = new Properties();
@@ -64,7 +64,7 @@ public class SnifferConfigInitializer {
         } catch (Exception e) {
             logger.error(e, "Failed to read the config file, skywalking is going to run in default config.");
         }
-
+        // 从环境变量覆盖配置
         try {
             overrideConfigBySystemEnv();
         } catch (Exception e) {
